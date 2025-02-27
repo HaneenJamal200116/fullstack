@@ -79,24 +79,33 @@ export const GET_CLOTHES_PRODUCTS = gql`
 `;
 
 
-// export const GET_PRODUCT = gql`
-//   query {
-//     product (id: $id) {
-//       id
-//       name
-//       description
-//       brand
-//       instock
-      
-//       gallery{
-//         imageUrl
-//       }
-//       price{
-//         amount
-//         currency{
-//             symbol
-//         }
-//       }  
-//     }
-//   }
-// `;
+export const GET_PRODUCT = gql`
+  query GetProduct($id: ID!) {
+    product(id: $id) {
+      id
+      name
+      description
+      brand
+      instock
+      gallery {
+        imageUrl
+      }
+      price {
+        amount
+        currency {
+          symbol
+        }
+      }
+      swatchAttribute{
+       items{
+          displayValue
+        }
+      }
+      textAttribute{
+        items{
+          displayValue
+        }
+      }
+    }
+  }
+`;

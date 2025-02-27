@@ -2,13 +2,13 @@
 import { useQuery } from "@apollo/client";
 // @ts-ignore
 
-import { client, GET_TECH_PRODUCTS } from '../constants/index';
+import { client, GET_ALL_PRODUCTS } from '../constants/index';
 import { useNavigate } from "react-router-dom";
 
 
-const techProducts = () => {
+const AllProducts = () => {
 
-  const { loading, error, data } = useQuery(GET_TECH_PRODUCTS, { client });
+  const { loading, error, data } = useQuery(GET_ALL_PRODUCTS, { client });
   const navigate = useNavigate();
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -17,12 +17,12 @@ const techProducts = () => {
 
     <section className='min-h-screen w-full  flex flex-col relative top-[50px]'>
       <div>
-        <p className="text-4xl  h-[68px]  text-left ml-15 "> Tech Products</p>
+        <p className="text-4xl  h-[68px]  text-left ml-15 "> All Products</p>
       </div>
       <div className=" mt-5 ml-10">
 
       <ul className="grid grid-cols-3 gap-5">
-        {data.techProducts.map((product: { id: string; name: string; instock: boolean; gallery: { imageUrl: string }[]; price: { amount: number; currency: { symbol: string }[] }[] }) => (
+        {data.products.map((product: { id: string; name: string; instock: boolean; gallery: { imageUrl: string }[]; price: { amount: number; currency: { symbol: string }[] }[] }) => (
           <li
           onClick={() => navigate(`/product/${product.id}`)}
             className="cursor-pointer flex flex-col mb-6 hover:shadow-2xl hover:scale-105 transition-transform duration-300 ease-in-out"
@@ -58,4 +58,4 @@ const techProducts = () => {
   );
 };
 
-export default techProducts;
+export default AllProducts;

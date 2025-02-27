@@ -8,11 +8,6 @@
 
 body {
   background: #FFFFFF;
-}
-
-header{
-  text-transform: uppercase;
+  color: #1D1F22;
   font-family: 'Raleway'; 
-  font-weight: 600;
-  
 }
