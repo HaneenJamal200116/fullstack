@@ -96,14 +96,28 @@ export const GET_PRODUCT = gql`
           symbol
         }
       }
-      swatchAttribute{
+      attribute{
+        name
        items{
+           
           displayValue
+          value
+        }
+      }
+      swatchAttribute{
+        name
+       items{
+          
+          displayValue
+          value
         }
       }
       textAttribute{
+        name
         items{
+          
           displayValue
+          value
         }
       }
     }

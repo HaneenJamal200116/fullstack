@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import url('https://fonts.cdnfonts.com/css/raleway-5');
-
+@import url('https://fonts.cdnfonts.com/css/roboto');
 
 * {
   scroll-behavior: smooth;
@@ -10,4 +10,8 @@ body {
   background: #FFFFFF;
   color: #1D1F22;
   font-family: 'Raleway'; 
+}
+
+.attr{
+  font-family: 'Roboto';
 }
