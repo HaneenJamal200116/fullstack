@@ -5,7 +5,8 @@ FROM php:8.2-apache
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 # Copy application files to the container
-COPY . /var/www/html/
+COPY fullstack-test-starter-main/public/ /var/www/html/
+
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html
