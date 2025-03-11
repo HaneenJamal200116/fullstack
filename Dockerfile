@@ -1,18 +1,20 @@
-# Use an official PHP runtime as a parent image
+# Use the official PHP image with Apache
 FROM php:8.2-apache
 
-# Install necessary extensions
-RUN docker-php-ext-install mysqli pdo pdo_mysql
+# Enable required PHP extensions
+RUN docker-php-ext-install pdo pdo_mysql mysqli
 
-# Copy application files to the container
+# Set the working directory to Apache's root
+WORKDIR /var/www/html
+
+# Copy only the public folder to Apache's root directory
 COPY fullstack-test-starter-main/public/ /var/www/html/
 
+# Copy the rest of the application (if needed for routing or other logic)
+COPY fullstack-test-starter-main /var/www/html/app
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www/html
+# Enable .htaccess if required for routing
+RUN a2enmod rewrite
 
-# Expose port 80 for Apache
-EXPOSE 80
-
-# Start Apache server
+# Restart Apache in the foreground
 CMD ["apache2-foreground"]
