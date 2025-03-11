@@ -4,8 +4,11 @@ import { useParams } from "react-router-dom"
 import { client, GET_PRODUCT } from '../constants/index'
 import parse from 'html-react-parser'
 import { Swiper, SwiperSlide } from "swiper/react"
+// @ts-ignore
 import "swiper/css"
+// @ts-ignore
 import "swiper/css/navigation"
+// @ts-ignore
 import "swiper/css/pagination"
 import { Navigation } from "swiper/modules"
 import { useEffect, useState } from "react"
@@ -13,6 +16,7 @@ import { useEffect, useState } from "react"
 const ProductDetail = () => {
   const { id } = useParams() 
   const { loading, error, data } = useQuery(GET_PRODUCT, { variables: { id }, client })
+// @ts-ignore
   const [activeImage, setActiveImage] = useState<any >()
   const [currIndex,setCurrIndex]=useState(0)
   const [sAttribute,setSwatchAttribute]=useState<{ [key: string]: string }>({})
