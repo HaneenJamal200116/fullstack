@@ -31,6 +31,30 @@ export const GET_ALL_PRODUCTS = gql`
             symbol
         }
       }  
+        attribute{
+        name
+       items{
+           
+          displayValue
+          value
+        }
+      }
+      swatchAttribute{
+        name
+       items{
+          
+          displayValue
+          value
+        }
+      }
+      textAttribute{
+        name
+        items{
+          
+          displayValue
+          value
+        }
+      }
     }
   }
 `;
@@ -38,7 +62,7 @@ export const GET_ALL_PRODUCTS = gql`
 export const GET_TECH_PRODUCTS = gql`
   query {
     techProducts {
-      id
+           id
       name
       description
       brand
@@ -52,6 +76,30 @@ export const GET_TECH_PRODUCTS = gql`
             symbol
         }
       }  
+        attribute{
+        name
+       items{
+           
+          displayValue
+          value
+        }
+      }
+      swatchAttribute{
+        name
+       items{
+          
+          displayValue
+          value
+        }
+      }
+      textAttribute{
+        name
+        items{
+          
+          displayValue
+          value
+        }
+      }
     }
   }
 `;
@@ -60,7 +108,7 @@ export const GET_TECH_PRODUCTS = gql`
 export const GET_CLOTHES_PRODUCTS = gql`
   query {
     clothingProducts {
-      id
+            id
       name
       description
       brand
@@ -74,6 +122,30 @@ export const GET_CLOTHES_PRODUCTS = gql`
             symbol
         }
       }  
+        attribute{
+        name
+       items{
+           
+          displayValue
+          value
+        }
+      }
+      swatchAttribute{
+        name
+       items{
+          
+          displayValue
+          value
+        }
+      }
+      textAttribute{
+        name
+        items{
+          
+          displayValue
+          value
+        }
+      }
     }
   }
 `;
@@ -120,6 +192,19 @@ export const GET_PRODUCT = gql`
           value
         }
       }
+    }
+  }
+`;
+
+
+export const PLACE_ORDER = gql`
+  mutation CreateOrder($productId: String!,$productName: String! , $quantity: Int!, $price: Float! , $attributes: String) {
+    createOrder(productId: $productId,productName: $productName ,quantity: $quantity, price: $price ,attributes: $attributes) {
+      productId
+      productName
+      quantity
+      price
+      attributes
     }
   }
 `;

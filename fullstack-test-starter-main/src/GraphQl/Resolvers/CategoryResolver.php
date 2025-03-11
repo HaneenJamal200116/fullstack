@@ -17,17 +17,4 @@ class CategoryResolver
         $categoryModel = new Category("");
         return $categoryModel->getAllCategories();
     }
-
-    // public function resolveProduct($root)
-    // {
-    //     $categoryModel = new Category("");
-    //     $categoryId = $root['id']; // Category ID from the query root
-
-    //     // Check if the category_id is 1, and fetch all products in that case
-    //     if ($categoryId == 1) {
-    //         return $categoryModel->getProductCategoryId(); // Or some other method to get all products
-    //     } else {
-    //         return $categoryModel->getProductCategoryId($categoryId); // Fetch products for the specific category
-    //     }
-    // }
 }

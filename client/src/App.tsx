@@ -5,10 +5,10 @@ import './App.css'
 import Navbar from './sections/Navbar'
 import AllProducts from './sections/AllProducts'
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import TechProducts from './sections/TechProducts';
-import ClothingProducts from './sections/ClothesProducts';
-import ProductDetail from './sections/ProductDetails';
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
+import TechProducts from './sections/TechProducts'
+import ClothingProducts from './sections/ClothesProducts'
+import ProductDetail from './sections/ProductDetails'
 
 const client = new ApolloClient({
   uri: "http://localhost:8000/graphql",
@@ -23,6 +23,7 @@ function App() {
       <Router>
       <Navbar /> 
       <Routes>
+      <Route path="/" element={<Navigate to="/category/all" replace />} />
       <Route path="/category/all" element={<AllProducts />} />
       <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/category/tech" element={<TechProducts />} />

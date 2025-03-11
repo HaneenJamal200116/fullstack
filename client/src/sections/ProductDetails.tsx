@@ -1,58 +1,71 @@
-import { useQuery } from "@apollo/client";
-import { useParams } from "react-router-dom";
+import { useQuery } from "@apollo/client"
+import { useParams } from "react-router-dom"
 // @ts-ignore
-import { client, GET_PRODUCT } from '../constants/index';
-import parse from 'html-react-parser';
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-
-import { Navigation } from "swiper/modules";
-import { useEffect, useState } from "react";
-import { get } from "http";
+import { client, GET_PRODUCT } from '../constants/index'
+import parse from 'html-react-parser'
+import { Swiper, SwiperSlide } from "swiper/react"
+import "swiper/css"
+import "swiper/css/navigation"
+import "swiper/css/pagination"
+import { Navigation } from "swiper/modules"
+import { useEffect, useState } from "react"
 
 const ProductDetail = () => {
-  const { id } = useParams(); 
-  const { loading, error, data } = useQuery(GET_PRODUCT, { variables: { id }, client });
+  const { id } = useParams() 
+  const { loading, error, data } = useQuery(GET_PRODUCT, { variables: { id }, client })
   const [activeImage, setActiveImage] = useState<any >()
   const [currIndex,setCurrIndex]=useState(0)
-  const [sAttribute,setSwatchAttribute]=useState<{ [key: string]: string }>({});
-  const [txtAttribute, setTextAttribute] = useState<{ [key: string]: string }>({});
+  const [sAttribute,setSwatchAttribute]=useState<{ [key: string]: string }>({})
+  const [txtAttribute, setTextAttribute] = useState<{ [key: string]: string }>({})
+  const [itemCount, setItemCount] = useState(() => {
+    return parseInt(localStorage.getItem("CartTotalItems") || '0')
+  })
+
+  console.log(localStorage.getItem("CartTotalItems"))
+
   type Details = {
-    name?: string;
-    price?: number;
-    currency? :string;
-    image?: string;
-    swatchAttr?: any;
+    id?: string
+    name?: string
+    price?: number
+    currency? :string
+    image?: string
+    swatchAttr?: any
     textAttr?: any
-  };
+    allTextAttr:any
+    allSwatchAttr:any
+    quantity:number
+  }
   
-  const [productDetails, setProductDetails] = useState<Details[]>([]);
+  const [productDetails, setProductDetails] = useState<Details[]>([])
   
   useEffect(() => {
     if (Object.keys(productDetails).length > 0) {
-      localStorage.setItem("Cart", JSON.stringify([productDetails]));
+      localStorage.setItem("CartList", JSON.stringify([productDetails]))
     }
-  }, [productDetails]);
+  }, [productDetails])
   
 
   useEffect(() => {
     if (data?.product?.gallery?.length > 0) {
-      setActiveImage(data.product.gallery[currIndex].imageUrl);
+      setActiveImage(data.product.gallery[currIndex].imageUrl)
     }
-    }, [data?.product]); 
+    }, [data?.product])
 
-  if (loading) return <p className="text-center text-2xl">Loading...</p>;
-  if (error) return <p className="text-center text-red-500 text-2xl">Error: {error.message}</p>;
-
-  if (!data || !data.product) return <p className="text-center text-2xl">Product not found</p>;
-
-  const product = data.product;
-
-console.log(localStorage.getItem("Cart") || "[]")
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setItemCount(parseInt(localStorage.getItem("CartTotalItems") || '0'))
+    }
+    window.addEventListener("storage", handleStorageChange)
+    return () => window.removeEventListener("storage", handleStorageChange)
+  }, [])
   
-console.log(sAttribute)
+  if (loading) return <p className="text-center text-2xl">Loading...</p>
+  if (error) return <p className="text-center text-red-500 text-2xl">Error: {error.message}</p>
+
+  if (!data || !data.product) return <p className="text-center text-2xl">Product not found</p>
+
+  const product = data.product
+  localStorage.setItem("CartTotalItems",itemCount.toString() )
 
   const Images=()=>{
     return (
@@ -71,7 +84,7 @@ console.log(sAttribute)
 
   const Slider =()=>{
     return (
-      <div className=" w-[541px] max-h-[541px] overflow-auto ">
+      <div data-testid='product-gallery' className=" w-[541px]  min-h-[241px] max-h-[541px] overflow-auto ">
           <Swiper
             modules={[Navigation]}
             spaceBetween={10}
@@ -105,13 +118,14 @@ console.log(sAttribute)
     (product.textAttribute.length > 0 &&
       Object.keys(txtAttribute).length < product.textAttribute.length) ||
     (product.swatchAttribute.length > 0 && !sAttribute) ||
-    !product.instock;
+    !product.instock
 
   const ProductDetails=()=>{
     return(
       <div className=" text-left  mt-5 w-[300px] ">
           <h1 className="text-3xl font-semibold">{product.name}</h1>
-          {product.textAttribute.length > 0 && (
+          <div>
+                      {product.textAttribute.length > 0 && (
               product.textAttribute.map(
                 (
                   attr: { name: string; items: { value: string }[] },
@@ -119,7 +133,8 @@ console.log(sAttribute)
                 ) => (
                   <div key={index}>
                     <div className="text-lg mt-5 attr font-bold">{attr.name}:</div>
-                    <div className="flex flex-wrap">
+                    <div className="flex flex-wrap"
+                    data-testid= {`product-attribute-${attr.name.replace(/\s+/g, '-').toLowerCase()}`} >
                       {attr.items.map((item, i) => (
                         <button
                           onClick={() =>
@@ -152,8 +167,10 @@ console.log(sAttribute)
               ) => (
                 <div key={index}>
                   <div className="text-lg mt-5 attr font-bold">{attr.name}:</div>
-                  <div className="flex flex-wrap">
+                  <div className="flex flex-wrap"
+                   data-testid= {`product-attribute-${attr.name.replace(/\s+/g, '-').toLowerCase()}`} >
                     {attr.items.map((item, i) => (
+                      
                       <button
                         onClick={() =>
                           setSwatchAttribute((prev) => ({
@@ -173,6 +190,8 @@ console.log(sAttribute)
               )
             )
           )}
+          </div>
+
 
            
 
@@ -186,21 +205,55 @@ console.log(sAttribute)
             <button
                 disabled={isDisabled}
                 onClick={()=>{
-                  const prev = JSON.parse(localStorage.getItem("Cart") || "[]")
-          
-                  const newProduct:Details= {
-                    name: product.name,
-                    price:product.price,
-                    image: product.gallery[0].imageUrl,
-                    textAttr:txtAttribute,
-                    swatchAttr:sAttribute
+                  const newTotalItems = itemCount + 1 
+                  setItemCount(newTotalItems)
+                  localStorage.setItem("CartTotalItems", newTotalItems.toString())
+                  
+
+                  window.dispatchEvent(new Event("storage"))
+                  const prev = JSON.parse(localStorage.getItem("CartList") || "[]")
+                  if (Array.isArray(prev)) {
+                    const flattenedPrev = prev.flat(Infinity)
+                    const existingProductIndex = flattenedPrev.findIndex(
+                      (item: Details) =>
+                        item.name === product.name &&
+                        JSON.stringify(item.textAttr) === JSON.stringify(txtAttribute)&&
+                        JSON.stringify(item.swatchAttr) === JSON.stringify(sAttribute)
+
+                    )
+                    console.log(txtAttribute)
+  
+                    if(existingProductIndex !== -1){
+                      const updatedCart = [...flattenedPrev]
+                      updatedCart[existingProductIndex].quantity += 1 
+                      localStorage.setItem("CartList", JSON.stringify(updatedCart))
+                      setProductDetails(updatedCart)       
+                    }
+                    else{
+                      const newProduct:Details= {
+                        id: product.id,
+                        name: product.name,
+                        price:product.price[0].amount,
+                        currency:product.price[0].currency[0].symbol,
+                        image: product.gallery[0].imageUrl,
+                        textAttr:txtAttribute,
+                        swatchAttr:sAttribute,
+                        allTextAttr:product.textAttribute,
+                        allSwatchAttr:product.swatchAttribute,
+                        quantity:1
+                      }
+                      
+                      const updatedCart = [...flattenedPrev, newProduct]
+                      localStorage.setItem("CartList", JSON.stringify(updatedCart))
+                      setProductDetails(updatedCart)
+  
+                    }
+           
                   }
 
-                  const updatedCart = [...prev, newProduct]
-                  localStorage.setItem("Cart", JSON.stringify(updatedCart));
-                  setProductDetails(updatedCart)
+                 
                 }}
-                
+                data-testid='add-to-cart' 
                 className={`mt-5 text-white h-[52px] w-[292px] font-semibold  ${
                   isDisabled
                     ? 'bg-gray-400 '
@@ -213,7 +266,7 @@ console.log(sAttribute)
 
 
           {/* Product Description */}
-          <div className="mt-4 max-h-[280px] overflow-y-auto   #1D1F22">
+          <div data-testid='product-description'  className="mt-4 max-h-[280px] overflow-y-auto   #1D1F22">
             {parse(product.description)}
           </div>
 
@@ -236,7 +289,7 @@ console.log(sAttribute)
       </div>
     
     </section>
-  );
-};
+  )
+}
 
-export default ProductDetail;
+export default ProductDetail

@@ -1,23 +1,41 @@
-import { useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client"
 // @ts-ignore
-import { client, GET_CATEGORIES } from '../constants/index';
-import { BrowserRouter as Router, Routes, Route, NavLink, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import Cart from "./Cart";
+import { client, GET_CATEGORIES } from '../constants/index'
+import { BrowserRouter as Router, Routes, Route, NavLink, useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
+import Cart from "./Cart"
 
 const Categories = () => {
-    const { loading, error, data } = useQuery(GET_CATEGORIES, { client });
-    const { category } = useParams();
-    const [activeTab, setActiveTab] = useState(category || 'all');
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const { loading, error, data } = useQuery(GET_CATEGORIES, { client })
+    const { category } = useParams()
+    const [activeTab, setActiveTab] = useState(category || 'all')
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [bubbleCount, setBubbleCount] = useState(0)
 
     useEffect(() => {
-        setActiveTab(category || 'all' ); 
-    }, [category]);
+        const updateBubbleCount = () => {
+            const totalItems = JSON.parse(localStorage.getItem("CartTotalItems") || "[]")
+            setBubbleCount(totalItems)
+        }
+        updateBubbleCount()
+        window.addEventListener("storage", updateBubbleCount)
+    
+        return () => {
+            window.removeEventListener("storage", updateBubbleCount)
+        }
+    }, [])
+    
+   
+ 
+    useEffect(() => {
+        setActiveTab(category || 'all' ) 
+    }, [category])
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error.message}</p>;
+    if (loading) return <p>Loading...</p>
+    if (error) return <p>Error: {error.message}</p>
 
+    
+    console.log('nav items',localStorage.getItem("CartTotalItems"))
     const NavItems = () => {
         return (
             <ul className="flex justify-center uppercase">
@@ -25,7 +43,7 @@ const Categories = () => {
                 <li key={cat.id} 
                 className={`h-14 px-6  font-semibold                    
                    ${activeTab === cat.name.toLowerCase() ? 'text-[#5ece7b] border-b-2 border-[#5ece7b] font-semibold' : 'text-black'}`}>
-                    <NavLink
+                    <NavLink 
                         to={`/category/${cat.name.toLowerCase()}`}
                         onClick={() => setActiveTab(cat.name.toLowerCase())}
                         data-testid={activeTab === cat.name.toLowerCase() ? "active-category-link" : "category-link"}
@@ -36,8 +54,8 @@ const Categories = () => {
                 </li>
             ))}
         </ul>
-        );
-    };
+        )
+    }
 
     return (
         <header className=" left-0 top-0 w-full max-h-20 z-50 ">
@@ -51,20 +69,26 @@ const Categories = () => {
                     </svg>
                 </div>
                 <div
+                    data-testid='cart-btn'
                     onClick={() => setIsModalOpen(true)} 
                     className="flex-1 flex justify-end cursor-pointer relative right-12">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32.402 32">
                         <path d="M6 30a2 2 1080 1 0 4 0 2 2 1080 1 0-4 0zm18 0a2 2 1080 1 0 4 0 2 2 1080 1 0-4 0zM-.058 5a1 1 0 0 0 1 1H3.02l1.242 5.312L6 20c0 .072.034.134.042.204l-1.018 4.58A.997.997 0 0 0 6 26h22.688a1 1 0 0 0 0-2H7.248l.458-2.06c.1.016.19.06.294.06h18.23c1.104 0 1.77-.218 2.302-1.5l3.248-9.964C32.344 8.75 31.106 8 30 8H6c-.156 0-.292.054-.438.088l-.776-3.316A1 1 0 0 0 3.812 4H.942a1 1 0 0 0-1 1zm6.098 5h23.81l-3.192 9.798c-.038.086-.07.148-.094.19-.066.006-.17.012-.334.012H8v-.198l-.038-.194L6.04 10z"></path>
                     </svg>
-                    
-       
+                    {bubbleCount>0 &&(
+                         <div className="text-white font-bold rounded-full text-xs bg-black h-[20px] w-[20px] flex items-center justify-center absolute m-[-12px] ">
+                            {bubbleCount}
+                        </div>
+                
+                    )}
+                       
                 </div>
-                <Cart isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} children={undefined}/>
+                <Cart isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} children={undefined} />
             </div>
            
    
         </header>
-    );
-};
+    )
+}
 
-export default Categories;
+export default Categories

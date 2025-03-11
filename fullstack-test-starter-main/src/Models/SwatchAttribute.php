@@ -26,7 +26,8 @@ class SwatchAttribute extends AbstractAttribute
 
     public function getAttributeByProductId($productId)
     {
-        $stmt = $this->db->prepare("SELECT * FROM  {$this->tableName} WHERE product_id = :product_id and type='swatch'");
+        $stmt = $this->db->prepare("SELECT * FROM  {$this->tableName}
+                                 WHERE product_id = :product_id and type='swatch'");
         $stmt->bindParam(':product_id', $productId, PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

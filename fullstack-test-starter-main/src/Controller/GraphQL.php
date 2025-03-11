@@ -15,13 +15,10 @@ use App\GraphQL\Resolvers\ProductResolver;
 use App\GraphQL\Resolvers\AttributeResolver;
 use App\GraphQL\Resolvers\OrderResolver;
 
-
 class GraphQL
 {
     public static function handle()
     {
-       
-    
 
         try {
             $queryType = new ObjectType([
@@ -79,6 +76,11 @@ class GraphQL
                             ],
                             'price' => [
                                 'type' => Type::nonNull(Type::float()),
+                                'description' => 'The total price of the product',
+                            ]
+                            ,
+                            'attributes' => [
+                                'type' => Type::string(),
                                 'description' => 'The total price of the product',
                             ],
                         ],

@@ -8,13 +8,13 @@ class OrderResolver
 {
     public function resolveOrder($root, $args)
     {
-        var_dump($args);
-        var_dump($root);
+
         $order = new Order(
             $args['productId'],
             $args['productName'],
             $args['quantity'],
-            $args['price']
+            $args['price'],
+            $args['attributes'],
         );
 
         $order->createOrder();
@@ -23,7 +23,8 @@ class OrderResolver
             'productId' => $order->getProductId(),
             'productName' => $order->getProductName(),
             'quantity' => $order->getQuantity(),
-            'price' => $order->getPrice()
+            'price' => $order->getPrice(),
+            'attributes' => $order->getAttributes(),
         ];
     }
 }

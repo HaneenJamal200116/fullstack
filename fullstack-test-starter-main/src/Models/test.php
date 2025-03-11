@@ -12,4 +12,4 @@ use App\Models\Item;
 $item = new Item("");
 //ps-5
 //print_r($product->getAllProducts());
-print_r($item->getItemByProductIdAttributeId("huarache-x-stussy-le","Size"));
+print_r($item->getItemByProductIdAttributeId("huarache-x-stussy-le", "Size"));

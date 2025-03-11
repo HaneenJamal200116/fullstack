@@ -25,6 +25,9 @@ class OrderType extends ObjectType
                 'price' => [
                     'type' => Type::nonNull(Type::float()),
                 ],
+                'attributes' => [
+                    'type' => Type::string(),
+                ],
             ],
         ]);
     }
