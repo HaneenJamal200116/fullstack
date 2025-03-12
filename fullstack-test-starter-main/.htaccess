@@ -2,3 +2,5 @@
 # RewriteRule .* /public/$0 [L]
 # DirectoryIndex index.php
 
+
+DirectoryIndex index.php
