@@ -8,10 +8,10 @@ RUN docker-php-ext-install pdo pdo_mysql mysqli
 WORKDIR /var/www/html
 
 # Copy only the public folder to Apache's root directory
-COPY fullstack-test-starter-main/public/ /var/www/html/
+COPY public/ /var/www/html/
 
 # Copy the rest of the application (if needed for routing or other logic)
-COPY fullstack-test-starter-main /var/www/html/app
+#COPY fullstack-test-starter-main /var/www/html/app
 
 # Enable .htaccess if required for routing
 RUN a2enmod rewrite
