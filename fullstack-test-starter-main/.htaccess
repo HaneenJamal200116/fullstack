@@ -1,4 +1,3 @@
-RewriteEngine On
-RewriteRule ^$ /public/ [L]
-RewriteRule ^(.*)$ /public/$1 [L]
-DirectoryIndex index.html
+RewriteEngine on
+RewriteRule .* /public/$0 [L]
+DirectoryIndex index.php
