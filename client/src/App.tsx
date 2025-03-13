@@ -23,7 +23,7 @@ function App() {
       <Router>
       <Navbar /> 
       <Routes>
-      <Route path="/" element={<Navigate to="/category/all" replace />} />
+      <Route path="/" />
       <Route path="/category/all" element={<AllProducts />} />
       <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/category/tech" element={<TechProducts />} />
