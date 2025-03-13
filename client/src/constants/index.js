@@ -2,7 +2,6 @@ import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
 export const client = new ApolloClient({
   uri: "https://backend-hj.great-site.net/graphql",
-  cache: new InMemoryCache(),
 });
 
 export const GET_CATEGORIES = gql`
