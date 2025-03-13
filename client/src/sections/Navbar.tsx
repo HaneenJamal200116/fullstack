@@ -7,8 +7,10 @@ import { useEffect, useState } from "react"
 import Cart from "./Cart"
 
 const Categories = () => {
+    // @ts-ignore
     const { loading, error, data } = useQuery(GET_CATEGORIES, { client })
     const { category } = useParams()
+    // @ts-ignore
     const [activeTab, setActiveTab] = useState(category || 'all')
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [bubbleCount, setBubbleCount] = useState(0)
