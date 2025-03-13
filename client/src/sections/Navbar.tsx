@@ -7,10 +7,8 @@ import { useEffect, useState } from "react"
 import Cart from "./Cart"
 
 const Categories = () => {
-    // @ts-ignore
     const { loading, error, data } = useQuery(GET_CATEGORIES, { client })
     const { category } = useParams()
-    // @ts-ignore
     const [activeTab, setActiveTab] = useState(category || 'all')
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [bubbleCount, setBubbleCount] = useState(0)
@@ -42,7 +40,7 @@ const Categories = () => {
     const NavItems = () => {
         return (
             <ul className="flex justify-center uppercase">
-            {/* {data.categories.map((cat: { id: number; name: string }) => (
+            {data.categories.map((cat: { id: number; name: string }) => (
                 <li key={cat.id} 
                 className={`h-14 px-6  font-semibold                    
                    ${activeTab === cat.name.toLowerCase() ? 'text-[#5ece7b] border-b-2 border-[#5ece7b] font-semibold' : 'text-black'}`}>
@@ -55,8 +53,7 @@ const Categories = () => {
                         {cat.name}
                     </NavLink>
                 </li>
-            ))} */}
-            <li><a data-testid='all' href="/all">all</a></li>
+            ))}
         </ul>
         )
     }
