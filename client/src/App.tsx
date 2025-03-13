@@ -11,10 +11,9 @@ import ClothingProducts from './sections/ClothesProducts'
 import ProductDetail from './sections/ProductDetails'
 
 const client = new ApolloClient({
-  uri: "https://backend-hj.great-site.net/graphql",
-  cache : new InMemoryCache(),
-  credentials: "include", 
-})
+  uri: "https://cors-anywhere.herokuapp.com/https://backend-hj.great-site.net/graphql",
+  cache: new InMemoryCache(),
+});
 
 
 function App() {
