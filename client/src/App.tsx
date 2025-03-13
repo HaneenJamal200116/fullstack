@@ -12,7 +12,8 @@ import ProductDetail from './sections/ProductDetails'
 
 const client = new ApolloClient({
   uri: "https://backend-hj.great-site.net/graphql",
-  cache : new InMemoryCache()
+  cache : new InMemoryCache(),
+  credentials: "include", 
 })
 
 
