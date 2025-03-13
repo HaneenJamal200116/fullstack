@@ -11,7 +11,7 @@ import ClothingProducts from './sections/ClothesProducts'
 import ProductDetail from './sections/ProductDetails'
 
 const client = new ApolloClient({
-  uri: "http://localhost:8000/graphql",
+  uri: "https://backend-hj.great-site.net/graphql",
   cache : new InMemoryCache()
 })
 
