@@ -1,13 +1,10 @@
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
 export const client = new ApolloClient({
-  uri: "https://backend-hj.great-site.net/graphql",
+  uri: "https://antiquewhite-chough-841448.hostingersite.com/graphql",
   cache: new InMemoryCache(),
-  credentials: "include",
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-  }
 });
+
 
 
 
