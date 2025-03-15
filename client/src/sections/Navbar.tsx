@@ -70,7 +70,6 @@ const Categories = () => {
                     </svg>
                 </div>
                 <div
-                    data-testid='cart-btn'
                     onClick={() => setIsModalOpen(true)} 
                     className="flex-1 flex justify-end cursor-pointer relative right-12">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32.402 32">

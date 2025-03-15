@@ -103,7 +103,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
 
 
   return (
-      <div className="fixed top-[88px] inset-0 flex justify-end z-50 ">
+      <div data-testid='cart-btn' className="fixed top-[88px] inset-0 flex justify-end z-50 ">
         
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/10 " onClick={onClose}></div>
