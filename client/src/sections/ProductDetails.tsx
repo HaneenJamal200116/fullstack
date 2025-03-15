@@ -166,9 +166,9 @@ const ProductDetail = () => {
 {product.swatchAttribute.length > 0 && (
            
                 <div >
-                  <div className="text-lg mt-5 attr font-bold">{product.swatchAttribute[0].name}:</div>
+                  <div data-testid= {`product-attribute-color`} className="text-lg mt-5 attr font-bold">{product.swatchAttribute[0].name}:</div>
                   <div className="flex flex-wrap"
-                   data-testid= {`product-attribute-color`} >
+                    >
                     {product.swatchAttribute[0].items.map((item: any, i: number) => (
 
 
