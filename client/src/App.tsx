@@ -9,8 +9,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate, } from "react-router-
 import TechProducts from './sections/TechProducts'
 import ClothingProducts from './sections/ClothesProducts'
 import ProductDetail from './sections/ProductDetails'
-import Cart from './sections/Cart'
-import { useState } from 'react'
 
 // const client = new ApolloClient({
 //   uri: "http://localhost:8000/graphql",
@@ -22,7 +20,6 @@ export const client = new ApolloClient({
 });
 
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false)
   return(
     <>
       <ApolloProvider client={client}>
@@ -34,7 +31,6 @@ function App() {
       <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/tech" element={<TechProducts />} />
         <Route path="/clothes" element={<ClothingProducts />} />
-        <Route path="/cart" element={<Cart isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} children={undefined} />} /> 
       </Routes>
     </Router>
        
