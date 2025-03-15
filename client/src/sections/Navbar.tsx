@@ -45,7 +45,7 @@ const Categories = () => {
                 className={`h-14 px-6  font-semibold                    
                    ${activeTab === cat.name.toLowerCase() ? 'text-[#5ece7b] border-b-2 border-[#5ece7b] font-semibold' : 'text-black'}`}>
                     <NavLink 
-                        to={`/category/${cat.name.toLowerCase()}`}
+                        to={`/${cat.name.toLowerCase()}`}
                         onClick={() => setActiveTab(cat.name.toLowerCase())}
                         data-testid={activeTab === cat.name.toLowerCase() ? "active-category-link" : "category-link"}
                         className='cursor-pointer '

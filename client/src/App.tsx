@@ -10,11 +10,14 @@ import TechProducts from './sections/TechProducts'
 import ClothingProducts from './sections/ClothesProducts'
 import ProductDetail from './sections/ProductDetails'
 
-const client = new ApolloClient({
+// const client = new ApolloClient({
+//   uri: "http://localhost:8000/graphql",
+//   cache: new InMemoryCache(),
+// });
+export const client = new ApolloClient({
   uri: "https://antiquewhite-chough-841448.hostingersite.com/graphql",
   cache: new InMemoryCache(),
 });
-
 
 function App() {
   return(
@@ -23,11 +26,10 @@ function App() {
       <Router>
       <Navbar /> 
       <Routes>
-      <Route path="/" element={<Navigate to="/category/all" replace />} />
-      <Route path="/category/all" element={<AllProducts />} />
+      <Route path="/all" element={<AllProducts />} />
       <Route path="/product/:id" element={<ProductDetail />} />
-        <Route path="/category/tech" element={<TechProducts />} />
-        <Route path="/category/clothes" element={<ClothingProducts />} />
+        <Route path="/tech" element={<TechProducts />} />
+        <Route path="/clothes" element={<ClothingProducts />} />
       </Routes>
     </Router>
        

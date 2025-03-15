@@ -4,7 +4,10 @@ export const client = new ApolloClient({
   uri: "https://antiquewhite-chough-841448.hostingersite.com/graphql",
   cache: new InMemoryCache(),
 });
-
+// export const client = new ApolloClient({
+//   uri: "http://localhost:8000/graphql",
+//   cache: new InMemoryCache(),
+// });
 
 
 
