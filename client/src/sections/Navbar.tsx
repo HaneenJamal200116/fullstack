@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client"
 // @ts-ignore
 import { client, GET_CATEGORIES } from '../constants/index'
 // @ts-ignore
-import { BrowserRouter as Router, Routes, Route, NavLink, useParams, useNavigate } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, NavLink, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import Cart from "./Cart"
 
@@ -12,7 +12,6 @@ const Categories = () => {
     const [activeTab, setActiveTab] = useState(category || 'all')
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [bubbleCount, setBubbleCount] = useState(0)
-    const navigate = useNavigate();
     useEffect(() => {
         const updateBubbleCount = () => {
             const totalItems = JSON.parse(localStorage.getItem("CartTotalItems") || "[]")
