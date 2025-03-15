@@ -163,7 +163,7 @@ const ProductDetail = () => {
               )
             )}
 
-            {
+            {product.swatchAttribute.length > 0 && (
             product.swatchAttribute.map(
               (
                 attr: { name: string; items: { value: string }[] },
@@ -172,10 +172,11 @@ const ProductDetail = () => {
                 <div key={index}>
                   <div className="text-lg mt-5 attr font-bold">{attr.name}:</div>
                   <div className="flex flex-wrap"
-                   data-testid='product-attribute-color' >
+                   data-testid= {`product-attribute-${attr.name.replace(/\s+/g, '-').toLowerCase()}`} >
                     {attr.items.map((item, i) => (
                       
                       <button
+                      data-testid={`product-attribute-color-${item.value.replace(/[^a-zA-Z0-9]/g, '-')}`}
                         onClick={() =>
                           setSwatchAttribute((prev) => ({
                             ...prev,
@@ -193,7 +194,7 @@ const ProductDetail = () => {
                 </div>
               )
             )
-          }
+          )}
           </div>
 
 
