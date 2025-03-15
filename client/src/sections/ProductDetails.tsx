@@ -176,7 +176,7 @@ const ProductDetail = () => {
                     {attr.items.map((item, i) => (
                       
                       <button
-                      data-testid={`product-attribute-color-${item.value.replace(/[^a-zA-Z0-9]/g, '-')}`}
+                      data-testid={sAttribute[attr.name] === item.value && `product-attribute-color-${item.value.replace(/[^a-zA-Z0-9]/g, '-')}`}
                         onClick={() =>
                           setSwatchAttribute((prev) => ({
                             ...prev,
