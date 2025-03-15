@@ -5,7 +5,7 @@ import './App.css'
 import Navbar from './sections/Navbar'
 import AllProducts from './sections/AllProducts'
 
-import { BrowserRouter as Router, Routes, Route, } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, Navigate, } from "react-router-dom"
 import TechProducts from './sections/TechProducts'
 import ClothingProducts from './sections/ClothesProducts'
 import ProductDetail from './sections/ProductDetails'
@@ -26,6 +26,7 @@ function App() {
       <Router>
       <Navbar /> 
       <Routes>
+      <Route path="/" element={<Navigate to="/all" replace />} />
       <Route path="/all" element={<AllProducts />} />
       <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/tech" element={<TechProducts />} />

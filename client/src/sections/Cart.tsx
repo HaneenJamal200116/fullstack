@@ -103,7 +103,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
 
 
   return (
-      <div  className="fixed top-[88px] inset-0 flex justify-end z-50 ">
+      <div className="fixed top-[88px] inset-0 flex justify-end z-50 ">
         
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/10 " onClick={onClose}></div>
@@ -115,7 +115,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
             className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 cursor-pointer"
             onClick={onClose}
           >
-            &times
+           x
           </button>
 
           {/* Modal Body */}
