@@ -163,28 +163,24 @@ const ProductDetail = () => {
               )
             )}
 
-            {product.swatchAttribute.length > 0 && (
-            product.swatchAttribute.map(
-              (
-                attr: { name: string; items: { value: string }[] },
-                index: number
-              ) => (
-                <div key={index}>
-                  <div className="text-lg mt-5 attr font-bold">{attr.name}:</div>
+{product.swatchAttribute.length > 0 && (
+           
+                <div >
+                  <div className="text-lg mt-5 attr font-bold">{product.swatchAttribute[0].name}:</div>
                   <div className="flex flex-wrap"
                    data-testid= {`product-attribute-color`} >
-                    {attr.items.map((item, i) => (
+                    {product.swatchAttribute[0].items.map((item: any, i: number) => (
 
 
                       <button
-                      data-testid={sAttribute[attr.name] === item.value && `product-attribute-color-${item.value}`}
+                      data-testid={sAttribute[product.swatchAttribute[0].name] === item.value && `product-attribute-color-${item.value}`}
                         onClick={() =>
                           setSwatchAttribute((prev) => ({
                             ...prev,
-                            [attr.name]: item.value,
+                            [product.swatchAttribute[0].name]: item.value,
                           }))
                         }
-                        className={`mr-3 mb-3 h-[32px] w-[32px]  p-3 cursor-pointer border-1 border-gray-400  ${sAttribute[attr.name] === item.value && 'ring-2 ring-[#5ECE7B] ring-offset-2'}`}
+                        className={`mr-3 mb-3 h-[32px] w-[32px]  p-3 cursor-pointer border-1 border-gray-400  ${sAttribute[product.swatchAttribute[0].name] === item.value && 'ring-2 ring-[#5ECE7B] ring-offset-2'}`}
                         key={i}
                         style={{backgroundColor:item.value}}
                       >
@@ -193,9 +189,7 @@ const ProductDetail = () => {
                     ))}
                   </div>
                 </div>
-              )
-            )
-          )}
+)}
           </div>
 
 
