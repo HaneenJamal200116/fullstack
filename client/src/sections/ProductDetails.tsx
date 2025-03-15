@@ -174,9 +174,10 @@ const ProductDetail = () => {
                   <div className="flex flex-wrap"
                    data-testid= {`product-attribute-${attr.name.replace(/\s+/g, '-').toLowerCase()}`} >
                     {attr.items.map((item, i) => (
-                      
+
+
                       <button
-                      data-testid={sAttribute[attr.name] === item.value && `product-attribute-color-${item.value.replace(/[^a-zA-Z0-9]/g, '-')}`}
+                      data-testid={sAttribute[attr.name] === item.value && `product-attribute-color-${item.value}`}
                         onClick={() =>
                           setSwatchAttribute((prev) => ({
                             ...prev,
