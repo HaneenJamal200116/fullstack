@@ -14,8 +14,8 @@ import { Navigation } from "swiper/modules"
 import { useEffect, useState } from "react"
 
 const ProductDetail = () => {
-  const { id } = useParams() 
-  const { loading, error, data } = useQuery(GET_PRODUCT, { variables: { id }, client })
+  const { name } = useParams() 
+  const { loading, error, data } = useQuery(GET_PRODUCT, { variables: { name }, client })
 // @ts-ignore
   const [activeImage, setActiveImage] = useState<any >()
   const [currIndex,setCurrIndex]=useState(0)
