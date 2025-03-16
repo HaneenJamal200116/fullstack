@@ -48,6 +48,12 @@ const ProductDetail = () => {
     }
   }, [productDetails])
   
+  useEffect(() => {
+    if (data?.product) {
+      console.log("Product Data:", data.product);
+      console.log("Swatch Attributes:", data.product.swatchAttribute);
+    }
+  }, [data]);
 
   useEffect(() => {
     if (data?.product?.gallery?.length > 0) {
