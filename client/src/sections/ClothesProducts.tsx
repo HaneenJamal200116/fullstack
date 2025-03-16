@@ -160,7 +160,7 @@ const CLothesProducts = () => {
               <div className="text-left ml-5 mb-5 mt-4">
                 <div 
                     className="font-light cursor-pointer"  
-                    onClick={() => navigate(`/product/${product.id}`)}>
+                    onClick={() => navigate(`/${product.id}`)}>
                       {product.name}
                 </div>
                 <div className="font-normal">{product.price[0].currency[0].symbol}{product.price[0].amount}</div>
