@@ -272,11 +272,7 @@ const ProductDetail = () => {
           </div>
 
 
-          {/* Product Description */}
-          <div data-testid='product-description'  className="mt-4 max-h-[280px] overflow-y-auto   #1D1F22">
-            {parse(product.description)}
-          </div>
-
+        
       
         </div>
     )
