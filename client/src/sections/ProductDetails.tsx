@@ -171,7 +171,7 @@ const ProductDetail = () => {
               ) => (
                 <div key={index}>
                   <div className="text-lg mt-5 attr font-bold">{attr.name}:</div>
-                  <div className="flex flex-wrap"
+                  <div className="flex flex-wrap"   data-testid= {`data-testid="product-attribute-color"`}
                    >
                     {attr.items.map((item, i) => (
                       
