@@ -86,7 +86,13 @@ const Categories = () => {
                     )}
                        
                 </div>
-                <Cart  isOpen={isModalOpen} onClose={() =>{ setIsModalOpen(false);  console.log("Cart overlay clicked, closing...");}} children={undefined} />
+                {isModalOpen && (
+                    <div data-testid="cart-overlay">
+                        <Cart  isOpen={isModalOpen} onClose={() =>{ setIsModalOpen(false);  console.log("Cart overlay clicked, closing...");}} children={undefined} />
+                    </div> 
+                )}
+                
+                
             </div>
            
    
