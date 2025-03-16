@@ -169,9 +169,9 @@ const ProductDetail = () => {
                 attr: { name: string; items: { value: string }[] },
                 index: number
               ) => (
-                <div key={index}>
+                <div key={index} data-testid="product-attribute-color">
                   <div className="text-lg mt-5 attr font-bold">{attr.name}:</div>
-                  <div className="flex flex-wrap" data-testid="product-attribute-color">
+                  <div className="flex flex-wrap" >
 
             
                     {attr.items.map((item, i) => (
