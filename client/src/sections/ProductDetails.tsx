@@ -135,10 +135,9 @@ const ProductDetail = () => {
                   attr: { name: string; items: { value: string }[] },
                   index: number
                 ) => (
-                  <div key={index}>
+                  <div key={index}  data-testid= {`product-attribute-${attr.name.replace(/\s+/g, '-').toLowerCase()}`}>
                     <div className="text-lg mt-5 attr font-bold">{attr.name}:</div>
-                    <div className="flex flex-wrap"
-                   >
+                    <div className="flex flex-wrap" >
                       {attr.items.map((item, i) => (
                         <button
                           onClick={() =>
@@ -169,10 +168,9 @@ const ProductDetail = () => {
            <div className="text-lg mt-5 attr font-bold">
              {product.swatchAttribute[0].name}:
            </div>
-           <div className="flex flex-wrap">
+           <div className="flex flex-wrap"  data-testid={`product-attribute-color`}>
              {product.swatchAttribute[0].items.map((item: any, i: number) => (
                <button
-                 // Dynamic data-testid for each button
                  data-testid={`product-attribute-color-${item.value}`}
                  onClick={() =>
                    setSwatchAttribute((prev) => ({
