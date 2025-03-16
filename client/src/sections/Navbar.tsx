@@ -86,10 +86,11 @@ const Categories = () => {
                     )}
                        
                 </div>
+                {isModalOpen && (
                 <div data-testid="cart-overlay">
                     <Cart isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} children={undefined} />
                 </div>
-             
+                )}
             </div>
            
    
