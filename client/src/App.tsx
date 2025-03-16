@@ -28,7 +28,7 @@ function App() {
       <Routes>
       <Route path="/" element={<Navigate to="/all" replace />} />
       <Route path="/all" element={<AllProducts />} />
-      <Route path="/product/:id" element={<ProductDetail />} />
+      <Route path="/:id" element={<ProductDetail />} />
         <Route path="/tech" element={<TechProducts />} />
         <Route path="/clothes" element={<ClothingProducts />} />
       </Routes>
