@@ -48,12 +48,6 @@ const ProductDetail = () => {
     }
   }, [productDetails])
   
-  useEffect(() => {
-    if (data?.product) {
-      console.log("Product Data:", data.product);
-      console.log("Swatch Attributes:", data.product.swatchAttribute);
-    }
-  }, [data]);
 
   useEffect(() => {
     if (data?.product?.gallery?.length > 0) {
@@ -135,15 +129,16 @@ const ProductDetail = () => {
       <div className=" text-left  mt-5 w-[300px] ">
           <h1 className="text-3xl font-semibold">{product.name}</h1>
           <div>
-              {product.textAttribute.length > 0 && (
+                      {product.textAttribute.length > 0 && (
               product.textAttribute.map(
                 (
                   attr: { name: string; items: { value: string }[] },
                   index: number
                 ) => (
-                  <div key={index}  data-testid={`product-attribute-${attr.name.replace(/\s+/g, '-').toLowerCase()}`}>
+                  <div key={index}>
                     <div className="text-lg mt-5 attr font-bold">{attr.name}:</div>
-                    <div className="flex flex-wrap" >
+                    <div className="flex flex-wrap"
+                    data-testid= {`product-attribute-${attr.name.replace(/\s+/g, '-').toLowerCase()}`} >
                       {attr.items.map((item, i) => (
                         <button
                           onClick={() =>
@@ -168,34 +163,37 @@ const ProductDetail = () => {
               )
             )}
 
-            {product.swatchAttribute.length > 0 && (
+            {
+            product.swatchAttribute.map(
+              (
+                attr: { name: string; items: { value: string }[] },
+                index: number
+              ) => (
+                <div key={index}>
+                  <div className="text-lg mt-5 attr font-bold">{attr.name}:</div>
+                  <div className="flex flex-wrap"
+                   data-testid= {`product-attribute-${attr.name.replace(/\s+/g, '-').toLowerCase()}`} >
+                    {attr.items.map((item, i) => (
                       
-              <div data-testid="product-attribute-color">
-                <div className="text-lg mt-5 attr font-bold">
-                  {product.swatchAttribute[0].name}:
+                      <button
+                        onClick={() =>
+                          setSwatchAttribute((prev) => ({
+                            ...prev,
+                            [attr.name]: item.value,
+                          }))
+                        }
+                        className={`mr-3 mb-3 h-[32px] w-[32px]  p-3 cursor-pointer border-1 border-gray-400  ${sAttribute[attr.name] === item.value && 'ring-2 ring-[#5ECE7B] ring-offset-2'}`}
+                        key={i}
+                        style={{backgroundColor:item.value}}
+                      >
+                        
+                      </button>
+                    ))}
+                  </div>
                 </div>
-                <div className="flex flex-wrap">
-                  {product.swatchAttribute[0].items.map((item: any, i: number) => (
-                    <button
-                      data-testid={`product-attribute-color-${item.value}`}
-                      onClick={() =>
-                        setSwatchAttribute((prev) => ({
-                          ...prev,
-                          [product.swatchAttribute[0].name]: item.value,
-                        }))
-                      }
-                      className={`mr-3 mb-3 h-[32px] w-[32px] p-3 cursor-pointer border-1 border-gray-400 ${
-                        sAttribute[product.swatchAttribute[0].name] === item.value &&
-                        'ring-2 ring-[#5ECE7B] ring-offset-2'
-                      }`}
-                      key={i}
-                      style={{ backgroundColor: item.value }}
-                    />
-                  ))}
-                </div>
-              </div>
-                    
-            )}
+              )
+            )
+          }
           </div>
 
 
