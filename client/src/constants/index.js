@@ -158,7 +158,7 @@ export const GET_CLOTHES_PRODUCTS = gql`
 
 
 export const GET_PRODUCT = gql`
-  query GetProduct($name: string!) {
+  query GetProduct($name: String!) {
     product(id: $name) {
       id
       name
