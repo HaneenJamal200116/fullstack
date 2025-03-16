@@ -129,13 +129,13 @@ const ProductDetail = () => {
       <div className=" text-left  mt-5 w-[300px] ">
           <h1 className="text-3xl font-semibold">{product.name}</h1>
           <div>
-                      {product.textAttribute.length > 0 && (
+              {product.textAttribute.length > 0 && (
               product.textAttribute.map(
                 (
                   attr: { name: string; items: { value: string }[] },
                   index: number
                 ) => (
-                  <div key={index}  data-testid= {`product-attribute-${attr.name.replace(/\s+/g, '-').toLowerCase()}`}>
+                  <div key={index}  data-testid={`product-attribute-${attr.name.replace(/\s+/g, '-').toLowerCase()}`}>
                     <div className="text-lg mt-5 attr font-bold">{attr.name}:</div>
                     <div className="flex flex-wrap" >
                       {attr.items.map((item, i) => (
@@ -162,34 +162,34 @@ const ProductDetail = () => {
               )
             )}
 
-{product.swatchAttribute.length > 0 && (
-           
-           <div data-testid="product-attribute-color">
-           <div className="text-lg mt-5 attr font-bold">
-             {product.swatchAttribute[0].name}:
-           </div>
-           <div className="flex flex-wrap"  data-testid={`product-attribute-color`}>
-             {product.swatchAttribute[0].items.map((item: any, i: number) => (
-               <button
-                 data-testid={`product-attribute-color-${item.value}`}
-                 onClick={() =>
-                   setSwatchAttribute((prev) => ({
-                     ...prev,
-                     [product.swatchAttribute[0].name]: item.value,
-                   }))
-                 }
-                 className={`mr-3 mb-3 h-[32px] w-[32px] p-3 cursor-pointer border-1 border-gray-400 ${
-                   sAttribute[product.swatchAttribute[0].name] === item.value &&
-                   'ring-2 ring-[#5ECE7B] ring-offset-2'
-                 }`}
-                 key={i}
-                 style={{ backgroundColor: item.value }}
-               />
-             ))}
-           </div>
-         </div>
-         
-)}
+            {product.swatchAttribute.length > 0 && (
+                      
+              <div data-testid="product-attribute-color">
+                <div className="text-lg mt-5 attr font-bold">
+                  {product.swatchAttribute[0].name}:
+                </div>
+                <div className="flex flex-wrap">
+                  {product.swatchAttribute[0].items.map((item: any, i: number) => (
+                    <button
+                      data-testid={`product-attribute-color-${item.value}`}
+                      onClick={() =>
+                        setSwatchAttribute((prev) => ({
+                          ...prev,
+                          [product.swatchAttribute[0].name]: item.value,
+                        }))
+                      }
+                      className={`mr-3 mb-3 h-[32px] w-[32px] p-3 cursor-pointer border-1 border-gray-400 ${
+                        sAttribute[product.swatchAttribute[0].name] === item.value &&
+                        'ring-2 ring-[#5ECE7B] ring-offset-2'
+                      }`}
+                      key={i}
+                      style={{ backgroundColor: item.value }}
+                    />
+                  ))}
+                </div>
+              </div>
+                    
+            )}
           </div>
 
 
