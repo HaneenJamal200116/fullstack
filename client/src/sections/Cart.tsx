@@ -119,7 +119,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
           </button>
 
           {/* Modal Body */}
-          <div className=' '>
+          <div className=' ' data-testid="cart-overlay">
             <div className='flex relative left-0'>
               <p className='font-bold mr-3 mb-3'>My Bag,</p> <p data-testid='cart-item-amount' className='mr-1'>{itemCount} </p>
              {(itemCount>1?<>items</>:<>item</>)} 
