@@ -163,7 +163,7 @@ const ProductDetail = () => {
               )
             )}
 
-            {
+            {product.swatchAttribute.length > 0 && (
             product.swatchAttribute.map(
               (
                 attr: { name: string; items: { value: string }[] },
@@ -195,6 +195,7 @@ const ProductDetail = () => {
                 </div>
               )
             )
+          )
           }
           </div>
 
