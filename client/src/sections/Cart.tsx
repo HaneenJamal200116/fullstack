@@ -103,7 +103,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
 
 
   return (
-      <div className="fixed top-[88px] inset-0 flex justify-end z-50 ">
+      <div className="fixed top-[88px] inset-0 flex justify-end z-50 "data-testid="cart-overlay">
         
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/10 " onClick={onClose}></div>
@@ -119,7 +119,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
           </button>
 
           {/* Modal Body */}
-          <div className=' ' data-testid="cart-overlay">
+          <div className=' ' >
             <div className='flex relative left-0'>
               <p className='font-bold mr-3 mb-3'>My Bag,</p> <p data-testid='cart-item-amount' className='mr-1'>{itemCount} </p>
              {(itemCount>1?<>items</>:<>item</>)} 
