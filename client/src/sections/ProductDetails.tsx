@@ -176,7 +176,7 @@ const ProductDetail = () => {
                     {attr.items.map((item, i) => (
                       
                       <button
-                      data-testid= {`product-attribute-${attr.name.replace(/\s+/g, '-').toLowerCase()}`}
+                      data-testid= {`data-testid="product-attribute-color"`}
                         onClick={() =>
                           setSwatchAttribute((prev) => ({
                             ...prev,
