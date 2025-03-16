@@ -103,8 +103,8 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
 
 
   return (
-    <div data-testid="cart-overlay">
-        <div className="fixed top-[88px] inset-0 flex justify-end z-50 ">
+    
+    <div className="fixed top-[88px] inset-0 flex justify-end z-50 " data-testid="cart-overlay">
         
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/10 " onClick={onClose}></div>
@@ -154,7 +154,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                                 <div className='flex flex-wrap'>
                                   {attr.items.map((i: any) => 
                                     <div style={{backgroundColor:i.value}} 
-                                    data-testid={`cart-item-attribute-${attr.name.replace(/\s+/g, '-').toLowerCase()}-${i.value.replace(/\s+/g, '-').toLowerCase()}${item.swatchAttr[attr.name] === i.value ? '-selected' : ''}`}
+                                    data-testid={`product-attribute-${attr.name.replace(/\s+/g, '-').toLowerCase()}-${i.value.replace(/\s+/g, '-').toLowerCase()}${item.swatchAttr[attr.name] === i.value ? '-selected' : ''}`}
                                         className={`mr-2 mb-1 h-[17px] w-[17px] border p-1   text-sm
                                           ${item.swatchAttr[attr.name] === i.value && 'ring-2 ring-[#5ECE7B] ring-offset-2'}`}>
  
@@ -229,8 +229,6 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
          
         </div>
     </div>
-    </div>
-   
     )
   }
       
