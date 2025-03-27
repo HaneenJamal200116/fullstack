@@ -9,8 +9,6 @@ export const client = new ApolloClient({
 //   cache: new InMemoryCache(),
 // });
 
-
-
 export const GET_CATEGORIES = gql`
   query {
     categories {
@@ -28,35 +26,32 @@ export const GET_ALL_PRODUCTS = gql`
       description
       brand
       instock
-      gallery{
+      gallery {
         imageUrl
       }
-      price{
+      price {
         amount
-        currency{
-            symbol
+        currency {
+          symbol
         }
-      }  
-        attribute{
+      }
+      attribute {
         name
-       items{
-           
+        items {
           displayValue
           value
         }
       }
-      swatchAttribute{
+      swatchAttribute {
         name
-       items{
-          
+        items {
           displayValue
           value
         }
       }
-      textAttribute{
+      textAttribute {
         name
-        items{
-          
+        items {
           displayValue
           value
         }
@@ -68,40 +63,37 @@ export const GET_ALL_PRODUCTS = gql`
 export const GET_TECH_PRODUCTS = gql`
   query {
     techProducts {
-           id
+      id
       name
       description
       brand
       instock
-      gallery{
+      gallery {
         imageUrl
       }
-      price{
+      price {
         amount
-        currency{
-            symbol
+        currency {
+          symbol
         }
-      }  
-        attribute{
+      }
+      attribute {
         name
-       items{
-           
+        items {
           displayValue
           value
         }
       }
-      swatchAttribute{
+      swatchAttribute {
         name
-       items{
-          
+        items {
           displayValue
           value
         }
       }
-      textAttribute{
+      textAttribute {
         name
-        items{
-          
+        items {
           displayValue
           value
         }
@@ -109,45 +101,41 @@ export const GET_TECH_PRODUCTS = gql`
     }
   }
 `;
-
 
 export const GET_CLOTHES_PRODUCTS = gql`
   query {
     clothingProducts {
-            id
+      id
       name
       description
       brand
       instock
-      gallery{
+      gallery {
         imageUrl
       }
-      price{
+      price {
         amount
-        currency{
-            symbol
+        currency {
+          symbol
         }
-      }  
-        attribute{
+      }
+      attribute {
         name
-       items{
-           
+        items {
           displayValue
           value
         }
       }
-      swatchAttribute{
+      swatchAttribute {
         name
-       items{
-          
+        items {
           displayValue
           value
         }
       }
-      textAttribute{
+      textAttribute {
         name
-        items{
-          
+        items {
           displayValue
           value
         }
@@ -155,7 +143,6 @@ export const GET_CLOTHES_PRODUCTS = gql`
     }
   }
 `;
-
 
 export const GET_PRODUCT = gql`
   query GetProduct($id: ID!) {
@@ -174,26 +161,23 @@ export const GET_PRODUCT = gql`
           symbol
         }
       }
-      attribute{
+      attribute {
         name
-       items{
-           
+        items {
           displayValue
           value
         }
       }
-      swatchAttribute{
+      swatchAttribute {
         name
-       items{
-          
+        items {
           displayValue
           value
         }
       }
-      textAttribute{
+      textAttribute {
         name
-        items{
-          
+        items {
           displayValue
           value
         }
@@ -202,10 +186,21 @@ export const GET_PRODUCT = gql`
   }
 `;
 
-
 export const PLACE_ORDER = gql`
-  mutation CreateOrder($productId: String!,$productName: String! , $quantity: Int!, $price: Float! , $attributes: String) {
-    createOrder(productId: $productId,productName: $productName ,quantity: $quantity, price: $price ,attributes: $attributes) {
+  mutation CreateOrder(
+    $productId: String!
+    $productName: String!
+    $quantity: Int!
+    $price: Float!
+    $attributes: String
+  ) {
+    createOrder(
+      productId: $productId
+      productName: $productName
+      quantity: $quantity
+      price: $price
+      attributes: $attributes
+    ) {
       productId
       productName
       quantity
