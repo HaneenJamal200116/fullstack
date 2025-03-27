@@ -5,20 +5,16 @@ import { client, GET_CATEGORIES } from "../constants/index";
 import {
   // @ts-ignore
   BrowserRouter as Router,
-  // @ts-ignore
-  Routes,
-  // @ts-ignore
-  Route,
   NavLink,
-  useParams,
+  useLocation,
 } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Cart from "./Cart";
 
 const Categories = () => {
   const { loading, error, data } = useQuery(GET_CATEGORIES, { client });
-  const { category } = useParams();
-  const [activeTab, setActiveTab] = useState(category || "all");
+  const location = useLocation().pathname.split("/")[1];
+  const [activeTab, setActiveTab] = useState("all");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [bubbleCount, setBubbleCount] = useState(0);
 
@@ -38,8 +34,8 @@ const Categories = () => {
   }, []);
 
   useEffect(() => {
-    setActiveTab(category || "all");
-  }, [category]);
+    setActiveTab(location || "all");
+  }, [location]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
