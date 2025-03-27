@@ -49,7 +49,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
         const formattedSwatch = Object.entries(item.swatchAttr || {})
           .map(([key, value]) => `${key}: ${value}`)
           .join(", ");
-
+        // @ts-ignore
         const response = placeOrder({
           variables: {
             productId: item.id,
