@@ -14,7 +14,7 @@ import Cart from "./Cart";
 const Categories = () => {
   const { loading, error, data } = useQuery(GET_CATEGORIES, { client });
   const location = useLocation().pathname.split("/")[1];
-  const [activeTab, setActiveTab] = useState("all");
+  const [activeTab, setActiveTab] = useState(location || "all");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [bubbleCount, setBubbleCount] = useState(0);
 
