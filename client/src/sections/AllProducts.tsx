@@ -60,7 +60,7 @@ const AllProducts = () => {
               className="group cursor-pointer flex flex-col mb-6 hover:shadow-2xl hover:scale-105 transition-transform duration-300 ease-in-out "
               key={product.id}
             >
-              <div onClick={() => navigate(`/all/${product.id}`)}>
+              <div onClick={() => navigate(`/${product.id}`)}>
                 <div className="relative flex justify-center items-center rounded-md p-5">
                   <img
                     className={`h-[300px] w-[400px] object-cover ${

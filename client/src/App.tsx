@@ -1,14 +1,18 @@
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
-import './App.css'
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import "./App.css";
 
+import Navbar from "./sections/Navbar";
+import AllProducts from "./sections/AllProducts";
 
-import Navbar from './sections/Navbar'
-import AllProducts from './sections/AllProducts'
-
-import { BrowserRouter as Router, Routes, Route, Navigate, } from "react-router-dom"
-import TechProducts from './sections/TechProducts'
-import ClothingProducts from './sections/ClothesProducts'
-import ProductDetail from './sections/ProductDetails'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import TechProducts from "./sections/TechProducts";
+import ClothingProducts from "./sections/ClothesProducts";
+import ProductDetail from "./sections/ProductDetails";
 
 // const client = new ApolloClient({
 //   uri: "http://localhost:8000/graphql",
@@ -20,26 +24,22 @@ export const client = new ApolloClient({
 });
 
 function App() {
-  return(
+  return (
     <>
       <ApolloProvider client={client}>
-      <Router>
-      <Navbar /> 
-      <Routes>
-        <Route path="/" element={<Navigate to="/all" replace />} />
-        <Route path="/all" element={<AllProducts />} />
-        <Route path="/all/:id" element={<ProductDetail />} />
-        <Route path="/tech" element={<TechProducts />} />
-        <Route path="/tech/:id" element={<ProductDetail />} />
-        <Route path="/clothes" element={<ClothingProducts />} />
-        <Route path="/clothes/:id" element={<ProductDetail />} />
-      </Routes>
-    </Router>
-       
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Navigate to="/all" replace />} />
+            <Route path="/all" element={<AllProducts />} />
+            <Route path="/:id" element={<ProductDetail />} />
+            <Route path="/tech" element={<TechProducts />} />
+            <Route path="/clothes" element={<ClothingProducts />} />
+          </Routes>
+        </Router>
       </ApolloProvider>
     </>
-  )
+  );
 }
 
-
-export default App
+export default App;
