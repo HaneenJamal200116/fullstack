@@ -3,8 +3,11 @@ import { useQuery } from "@apollo/client";
 import { client, GET_CATEGORIES } from "../constants/index";
 // @ts-ignore
 import {
+  // @ts-ignore
   BrowserRouter as Router,
+  // @ts-ignore
   Routes,
+  // @ts-ignore
   Route,
   NavLink,
   useParams,
