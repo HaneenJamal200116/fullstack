@@ -7,7 +7,7 @@ use App\Models\Order;
 class OrderResolver
 {
     public function resolveOrder($root, $args)
-{
+    {
    
         $orders = [];
         foreach ($args['orders'] as $orderData) {
@@ -31,10 +31,6 @@ class OrderResolver
                 'attributes' => $order->getAttributes(),
             ];
         }
-
         return $orders;
-   
+    }
 }
-
-    
- }

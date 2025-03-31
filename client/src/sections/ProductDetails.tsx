@@ -100,11 +100,9 @@ const ProductDetail = () => {
 
   const Slider = () => {
     return (
-      <div
-        data-testid="product-gallery"
-        className=" w-[541px]  min-h-[241px] max-h-[541px] overflow-auto "
-      >
+      <div className=" w-[541px]  min-h-[241px] max-h-[541px] overflow-auto ">
         <Swiper
+          data-testid="product-gallery"
           modules={[Navigation]}
           spaceBetween={10}
           slidesPerView={1}
@@ -189,7 +187,12 @@ const ProductDetail = () => {
                 attr: { name: string; items: { value: string }[] },
                 index: number
               ) => (
-                <div key={index} data-testid="product-attribute-color">
+                <div
+                  key={index}
+                  data-testid={`product-attribute-${attr.name
+                    .replace(/\s+/g, "-")
+                    .toLowerCase()}`}
+                >
                   <div className="text-lg mt-5 attr font-bold">
                     {attr.name}:
                   </div>
