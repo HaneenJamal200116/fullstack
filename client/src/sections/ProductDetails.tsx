@@ -100,9 +100,11 @@ const ProductDetail = () => {
 
   const Slider = () => {
     return (
-      <div className=" w-[541px]  min-h-[241px] max-h-[541px] overflow-auto ">
+      <div
+        className=" w-[541px]  min-h-[241px] max-h-[541px] overflow-auto "
+        data-testid="product-gallery"
+      >
         <Swiper
-          data-testid="product-gallery"
           modules={[Navigation]}
           spaceBetween={10}
           slidesPerView={1}
