@@ -130,7 +130,7 @@ export const GET_CLOTHES_PRODUCTS = gql`
         name
         items {
           displayValue
-          valKue
+          value
         }
       }
       textAttribute {
