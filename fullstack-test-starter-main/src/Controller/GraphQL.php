@@ -60,28 +60,11 @@ class GraphQL
                 'name' => 'Mutation',
                 'fields' => [
                     'createOrder' => [
-                        'type' => Types::order(),
-                        'args' => [
-                            'productId' => [
-                                'type' => Type::nonNull(Type::string()),
-                                'description' => 'The ID of the product being ordered',
-                            ],
-                            'productName' => [
-                                'type' => Type::nonNull(Type::string()),
-                                'description' => 'The ID of the product being ordered',
-                            ],
-                            'quantity' => [
-                                'type' => Type::nonNull(Type::int()),
-                                'description' => 'The quantity of the product ordered',
-                            ],
-                            'price' => [
-                                'type' => Type::nonNull(Type::float()),
-                                'description' => 'The total price of the product',
-                            ]
-                            ,
-                            'attributes' => [
-                                'type' => Type::string(),
-                                'description' => 'The total price of the product',
+                        'type' => Type::listOf(Types::order()),
+                        'args' => [  
+                            'orders' => [
+                                'type' => Type::listOf(Type::nonNull(Types::orderInput())), 
+                                'description' => 'List of orders to be created',
                             ],
                         ],
                         'resolve' => [new OrderResolver(), 'resolveOrder'],

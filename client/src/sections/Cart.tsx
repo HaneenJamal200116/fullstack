@@ -41,7 +41,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
 
   const handleOrder = () => {
     try {
-      for (const item of productDetails) {
+      const orders = productDetails.map((item) => {
         const formattedText = Object.entries(item.textAttr || {})
           .map(([key, value]) => `${key}: ${value}`)
           .join(", ");
@@ -49,23 +49,26 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
         const formattedSwatch = Object.entries(item.swatchAttr || {})
           .map(([key, value]) => `${key}: ${value}`)
           .join(", ");
-        // @ts-ignore
-        const response = placeOrder({
-          variables: {
-            productId: item.id,
-            productName: item.name,
-            quantity: item.quantity,
-            price: item.price,
-            attributes: formattedText + " " + formattedSwatch,
-          },
-        });
 
-        setProductDetails([]);
-        localStorage.setItem("CartList", JSON.stringify([]));
-        setItemCount(0);
-        localStorage.setItem("CartTotalItems", "0");
-        window.dispatchEvent(new Event("storage"));
-      }
+        return {
+          productId: item.id,
+          productName: item.name,
+          quantity: item.quantity,
+          price: item.price,
+          attributes: formattedText + " " + formattedSwatch,
+        };
+      });
+      placeOrder({
+        variables: {
+          orders,
+        },
+      });
+
+      setProductDetails([]);
+      localStorage.setItem("CartList", JSON.stringify([]));
+      setItemCount(0);
+      localStorage.setItem("CartTotalItems", "0");
+      window.dispatchEvent(new Event("storage"));
     } catch (err) {
       console.error("Order Failed:", err);
     }

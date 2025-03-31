@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Types;
 
+use GraphQL\Type\Definition\InputObjectType;
 use GraphQL\Type\Definition\ObjectType;
 
 class Types
@@ -14,6 +15,7 @@ class Types
     private static $price;
     private static $currency;
     private static $order;
+    private static $orderInput;
 
     public static function category(): ObjectType
     {
@@ -54,4 +56,10 @@ class Types
     {
         return self::$order ?: (self::$order = new OrderType());
     }
+
+    public static function orderInput(): InputObjectType
+    {
+        return self::$orderInput ?: (self::$orderInput = new OrderInputType()); 
+    }
+    
 }

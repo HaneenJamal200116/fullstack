@@ -130,7 +130,7 @@ export const GET_CLOTHES_PRODUCTS = gql`
         name
         items {
           displayValue
-          value
+          valKue
         }
       }
       textAttribute {
@@ -187,20 +187,8 @@ export const GET_PRODUCT = gql`
 `;
 
 export const PLACE_ORDER = gql`
-  mutation CreateOrder(
-    $productId: String!
-    $productName: String!
-    $quantity: Int!
-    $price: Float!
-    $attributes: String
-  ) {
-    createOrder(
-      productId: $productId
-      productName: $productName
-      quantity: $quantity
-      price: $price
-      attributes: $attributes
-    ) {
+  mutation createOrder($orders: [OrderInput!]!) {
+    createOrder(orders: $orders) {
       productId
       productName
       quantity
