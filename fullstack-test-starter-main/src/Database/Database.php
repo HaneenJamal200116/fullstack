@@ -5,14 +5,11 @@ namespace App\Database;
 use PDO;
 
 class Database
-{  private $host = 'localhost';
-    private $db_name = 'data';
-    private $username = 'root';
-    private $password = '1234';
-    // private $host = '127.0.0.1:3306';
-    // private $db_name = 'u509122456_data';
-    // private $username = 'u509122456_root';
-    // private $password = 'pT2@ik0Z8MW';
+{  
+    private $host = '127.0.0.1:3306';
+    private $db_name = 'u509122456_data';
+    private $username = 'u509122456_root';
+    private $password = 'pT2@ik0Z8MW';
     private $conn;
     public function getConnection()
     {
