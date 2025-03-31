@@ -138,7 +138,8 @@ const ProductDetail = () => {
   const isDisabled =
     (product.textAttribute.length > 0 &&
       Object.keys(txtAttribute).length < product.textAttribute.length) ||
-    (product.swatchAttribute.length > 0 && !sAttribute) ||
+    (product.swatchAttribute.length > 0 &&
+      Object.keys(sAttribute).length < product.swatchAttribute.length) ||
     !product.instock;
 
   const ProductDetails = () => {
